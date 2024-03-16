@@ -1,0 +1,1 @@
+<img src="{{ asset('assets/img/logo-full.png') }}" alt="Diagcare" style="width:420px; height:100%">
