@@ -21,7 +21,7 @@
 <div class="header">
 	<div class="header-left">
 		<a href="/" class="logo">
-			<img src="{{ asset('assets/img/logo.png') }}" width="35" height="35" alt> <span>Diagcare</span>
+			 <span>ES</span>
 		</a>
 	</div>
 	<a id="toggle_btn" href="#"><img src="{{ asset('assets/img/icons/bar-icon.svg') }}" alt></a>
@@ -30,10 +30,10 @@
 				src="{{ asset('assets/img/icons/bar-icon.svg') }}" alt></a>
 
 	<div class="top-nav-search mob-view">
-		<form>
+		<!-- <form>
 			<input type="text" class="form-control" placeholder="Search here">
 			<a class="btn"><img src="{{ asset('assets/img/icons/search-normal.svg') }}" alt></a>
-		</form>
+		</form> -->
 
 	</div>
 	<a href="#top" id="back-to-top-button" alt>

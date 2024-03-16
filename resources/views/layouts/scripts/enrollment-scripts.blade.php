@@ -7,4 +7,11 @@
         });
     });
 
+    window.livewire.on('closeEnrollmentModal', () => {
+        $('#enrollmentModal').modal('hide');
+    });
+
+    window.livewire.on('openEnrollmentModal', () => {
+        $('#enrollmentModal').modal('show');
+    });
 </script>

@@ -5,7 +5,7 @@
 				<ul class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/">Dashboard</a></li>
 					<li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-					<li class="breadcrumb-item active">Teacher List</li>
+					<li class="breadcrumb-item active">Student List</li>
 				</ul>
 			</div>
 		</div>
@@ -20,10 +20,10 @@
 						<div class="row align-items-center">
 							<div class="col">
 								<div class="doctor-table-blk">
-									<h3>Teacher List</h3>
+									<h3>Student List</h3>
 									<div class="doctor-search-blk">
 										<div class="add-group">
-											<a wire:click="createTeacher" class="btn btn-primary ms-2"><img src="{{ asset('assets/img/icons/plus.svg') }}" alt>
+											<a wire:click="createStudent" class="btn btn-primary ms-2"><img src="{{ asset('assets/img/icons/plus.svg') }}" alt>
 											</a>
 										</div>
 									</div>
@@ -41,10 +41,10 @@
 					</div>
 
 					<div class="table-responsive">
-						<table id="Teacher-table" class="table border-0 custom-table comman-table mb-0">
+						<table id="Student-table" class="table border-0 custom-table comman-table mb-0">
 							<thead>
 								<tr>
-									<th>Teacher</th>
+									<th>Student</th>
 									<th>Id Number</th>
 									<th>Contact Number</th>
 									<th>Gender</th>
@@ -54,36 +54,36 @@
 							</thead>
 							<tbody>
 
-								@foreach ($teachers as $teacher)
+								@foreach ($students as $student)
 								<tr>
 									<td>
-										{{ $teacher->first_name }} {{ $teacher->middle_name }} {{ $teacher->last_name }}
+										{{ $student->first_name }} {{ $student->middle_name }} {{ $student->last_name }}
 									</td>
 									<td>
-										{{ $teacher->id_number}}
+										{{ $student->id_number}}
 									</td>
 									<td>
-										{{ $teacher->contact_number}}
+										{{ $student->contact_number}}
 									</td>
 									<td>
-										{{ $teacher->gender->name ?? ''}}
+										{{ $student->gender->name ?? ''}}
 									</td>
 
 									<td class="text-center">
 										<div class="btn-group" role="group">
 
 											@if(auth()->user()->hasRole('admin'))
-											@if ($teacher->user_id == null)
-											<button type="button" class="btn btn-primary btn-sm mx-1" wire:click="createTeacherAccount({{ $teacher->id }})" title="Add">
+											@if ($student->user_id == null)
+											<button type="button" class="btn btn-primary btn-sm mx-1" wire:click="createStudentAccount({{ $student->id }})" title="Add">
 										
 												<i class="fa-solid fa-user-plus"></i>
 											</button>
 											@endif
 											@endif
-											<button type="button" class="btn btn-primary btn-sm mx-1" wire:click="editTeacher({{ $teacher->id }})" title="Edit">
+											<button type="button" class="btn btn-primary btn-sm mx-1" wire:click="editStudent({{ $student->id }})" title="Edit">
 												<i class='fa fa-pen-to-square'></i>
 											</button>
-											<a class="btn btn-danger btn-sm mx-1" wire:click="deleteTeacher({{ $teacher->id }})" title="Delete">
+											<a class="btn btn-danger btn-sm mx-1" wire:click="deleteStudent({{ $student->id }})" title="Delete">
 												<i class="fa fa-trash"></i>
 											</a>
 										</div>
@@ -98,22 +98,22 @@
 			</div>
 			{{-- Modal --}}
 
-			<div wire.ignore.self class="modal fade" id="teacherModal" tabindex="-1" role="dialog" aria-labelledby="teacherModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+			<div wire.ignore.self class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
 				<div class="modal-dialog modal-dialog-centered">
-					<livewire:teacher.teacher-form />
+					<livewire:student.student-form />
 				</div>
 			</div>
-			<div wire.ignore.self class="modal fade" id="teacherAccountModal" tabindex="-1" role="dialog" aria-labelledby="teacherAccountModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+			<div wire.ignore.self class="modal fade" id="studentAccountModal" tabindex="-1" role="dialog" aria-labelledby="studentAccountModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
 				<div class="modal-dialog modal-dialog-centered">
-					<livewire:teacher.teacher-account-form />
+					<livewire:student.student-account-form />
 				</div>
 			</div>
 			@section('custom_script')
-			@include('layouts.scripts.teacher-scripts')
+			@include('layouts.scripts.student-scripts')
 			@endsection
 
 		</div>
 		<!-- Pagination links -->
-		{{ $teachers->links() }}
+		{{ $students->links() }}
 	</div>
 </div>

@@ -2,6 +2,10 @@
 
 use App\Http\Livewire\User\UserList;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Level\LevelList;
+use App\Http\Livewire\Course\CourseList;
+use App\Http\Livewire\Student\StudentList;
+use App\Http\Livewire\Subject\SubjectList;
 use App\Http\Livewire\Teacher\TeacherList;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
@@ -40,6 +44,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('permission', PermissionList::class);
 
     Route::get('teachers', TeacherList::class);
+    Route::get('students', StudentList::class);
+
+    Route::get('subjects', SubjectList::class);
+    Route::get('courses', CourseList::class);
+    Route::get('levels', LevelList::class);
 });
 
 require __DIR__.'/auth.php';

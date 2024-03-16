@@ -7,11 +7,19 @@
         });
     });
 
-    window.livewire.on('closeStatusModal', () => {
-        $('#statusModal').modal('hide');
+    window.livewire.on('closeTeacherModal', () => {
+        $('#teacherModal').modal('hide');
     });
 
-    window.livewire.on('openStatusModal', () => {
-        $('#statusModal').modal('show');
+    window.livewire.on('openTeacherModal', () => {
+        $('#teacherModal').modal('show');
+    });
+
+    window.livewire.on('closeTeacherAccountModal', () => {
+        $('#teacherAccountModal').modal('hide');
+    });
+
+    window.livewire.on('openTeacherAccountModal', () => {
+        $('#teacherAccountModal').modal('show');
     });
 </script>

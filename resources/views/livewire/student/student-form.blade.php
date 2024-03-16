@@ -1,10 +1,10 @@
 <div class="modal-content">
     <div class="modal-header">
         <h1 class="modal-title fs-5">
-            @if ($teacherId)
-            Edit Teacher
+            @if ($studentId)
+            Edit Student
             @else
-            Add Teacher
+            Add Student
             @endif
         </h1>
         <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Livewire\Teacher;
+namespace App\Http\Livewire\Student;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use App\Models\Teacher;
+use App\Models\Student;
 use App\Models\User;
 use Livewire\Component;
 
-class TeacherAccountForm extends Component
+class StudentAccountForm extends Component
 {
-    public $user_id, $teacherId, $last_name, $first_name, $middle_name, $email, $password;
+    public $user_id, $studentId, $last_name, $first_name, $middle_name, $email, $password;
     public $action = '';  //flash
     public $message = '';  //flash
     public $showButton = true;
     protected $listeners = [
-        'teacherId',
+        'studentId',
         'resetInputFields',
 
     ];
@@ -26,13 +26,13 @@ class TeacherAccountForm extends Component
         $this->resetValidation();
         $this->resetErrorBag();
     }
-    public function teacherId($teacherId)
+    public function studentId($studentId)
     {
-        $this->teacherId = $teacherId;
-        $teacher = Teacher::whereId($teacherId)->first();
-        $this->first_name = $teacher->first_name;
-        $this->middle_name = $teacher->middle_name;
-        $this->last_name = $teacher->last_name;
+        $this->studentId = $studentId;
+        $student = Student::whereId($studentId)->first();
+        $this->first_name = $student->first_name;
+        $this->middle_name = $student->middle_name;
+        $this->last_name = $student->last_name;
         $this->email = strtolower($this->first_name . $this->last_name . "@gmail.com");
         $this->email = str_replace(' ', '', $this->email);
         $this->password = Str::random(8); // Generate a random passcode of length 8
@@ -50,7 +50,7 @@ class TeacherAccountForm extends Component
                 'password' => ['required', 'min:6']
             ]);
 
-            $teacher = Teacher::find($this->teacherId);
+            $student = Student::find($this->studentId);
     
            // Concatenate and convert to lowercase
             $user = User::create([
@@ -63,26 +63,26 @@ class TeacherAccountForm extends Component
             ]);
     
             // Assign the "requester" role to the user
-            $user->assignRole('teacher');
+            $user->assignRole('student');
     
-            // Update the user_id field in the Teacher model
-            $teacher->user_id = $user->id; // Set the user_id to the ID of the newly created user
-            $teacher->save(); // Save the changes to the Teacher record
+            // Update the user_id field in the Student model
+            $student->user_id = $user->id; // Set the user_id to the ID of the newly created user
+            $student->save(); // Save the changes to the Student record
 
             $action = 'store';
             $message = 'Account Successfully Created';
             $this->emit('flashAction', $action, $message);
             $this->resetInputFields();
-            $this->emit('closeTeacherAccountModal');
-            $this->emit('refreshParentTeacherAccount');
+            $this->emit('closeStudentAccountModal');
+            $this->emit('refreshParentStudentAccount');
             $this->emit('refreshTable');
             //$this->reset();
         }
     public function render()
     {
-        $teacherId = $this->teacherId;
-        return view('livewire.teacher.teacher-account-form', [
-            'teacherId' => $teacherId,
+        $studentId = $this->studentId;
+        return view('livewire.student.student-account-form', [
+            'studentId' => $studentId,
         ]);
     }
 }
