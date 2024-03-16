@@ -126,7 +126,7 @@
 				</div>
 			</div>
 			<div wire.ignore.self class="modal fade" id="gradeModal" tabindex="-1" role="dialog" aria-labelledby="gradeModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-				<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-dialog modal-dialog-centered modal-lg">
 					<livewire:student.grade-form/>
 				</div>
 			</div>

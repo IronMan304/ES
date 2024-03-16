@@ -50,6 +50,9 @@ class GradeForm extends Component
             // Assuming firstGradingGrades is an associative array where keys are subject IDs
             // and values are the first grading grades
             $this->firstGradingGrades[$subject->id] = $subject->first_grading_grade;
+            $this->secondGradingGrades[$subject->id] = $subject->second_grading_grade;
+            $this->thirdGradingGrades[$subject->id] = $subject->third_grading_grade;
+            $this->fourthGradingGrades[$subject->id] = $subject->fourth_grading_grade;
         }
     }
 
@@ -67,6 +70,24 @@ class GradeForm extends Component
                 $studentSubjectKey = StudentSubjectKey::updateOrCreate(
                     ['student_id' => $this->studentId, 'subject_id' => $subjectId],
                     ['first_grading_grade' => $grade]
+                );
+            }
+            foreach ($this->secondGradingGrades as $subjectId => $grade) {
+                $studentSubjectKey = StudentSubjectKey::updateOrCreate(
+                    ['student_id' => $this->studentId, 'subject_id' => $subjectId],
+                    ['second_grading_grade' => $grade]
+                );
+            }
+            foreach ($this->thirdGradingGrades as $subjectId => $grade) {
+                $studentSubjectKey = StudentSubjectKey::updateOrCreate(
+                    ['student_id' => $this->studentId, 'subject_id' => $subjectId],
+                    ['third_grading_grade' => $grade]
+                );
+            }
+            foreach ($this->fourthGradingGrades as $subjectId => $grade) {
+                $studentSubjectKey = StudentSubjectKey::updateOrCreate(
+                    ['student_id' => $this->studentId, 'subject_id' => $subjectId],
+                    ['fourth_grading_grade' => $grade]
                 );
             }
             $action = 'edit';

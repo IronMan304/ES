@@ -2,7 +2,7 @@
     <div class="modal-header">
         <h1 class="modal-title fs-5">
             @if ($studentId)
-            Edit Student
+            Input Grades
             @else
             Add Student
             @endif
@@ -31,7 +31,7 @@
                             Id Number
 
                         </label>
-                        <input class="form-control" type="text" wire:model="id_number" placeholder />
+                        <input class="form-control" type="text" wire:model="id_number" placeholder disabled />
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@
                             First name
 
                         </label>
-                        <input class="form-control" type="text" wire:model="first_name" placeholder />
+                        <input class="form-control" type="text" wire:model="first_name" placeholder disabled />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -50,7 +50,7 @@
                             Middle name
 
                         </label>
-                        <input class="form-control" type="text" wire:model="middle_name" placeholder />
+                        <input class="form-control" type="text" wire:model="middle_name" placeholder disabled />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -59,7 +59,7 @@
                             Last name
 
                         </label>
-                        <input class="form-control" type="text" wire:model="last_name" placeholder />
+                        <input class="form-control" type="text" wire:model="last_name" placeholder disabled />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -68,7 +68,7 @@
                             Contact Number
 
                         </label>
-                        <input class="form-control" type="text" wire:model="contact_number" placeholder />
+                        <input class="form-control" type="text" wire:model="contact_number" placeholder disabled />
                     </div>
                 </div>
 
@@ -80,31 +80,77 @@
                             <option value="" selected>Select a Gender</option>
                             @foreach ($genders as $gender)
                             <option value="{{ $gender->id }}">
-                                {{ $gender->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>--}}
+                {{ $gender->name }}
+                </option>
+                @endforeach
+                </select>
+            </div>
+        </div>--}}
 
-                <div class="col-12">
-                    <h3>First Grading</h3>
-                    <div class="row">
-                        @foreach($subjectIds as $subjectId)
-                        <div class="col-md-6">
-                            <div class="form-group local-forms">
-                                <label>{{ \App\Models\Subject::find($subjectId)->name }}</label>
-                                <input class="form-control" type="text" wire:model="firstGradingGrades.{{ $subjectId }}" placeholder />
-                            </div>
-                        </div>
-                        @endforeach
+        <div class="col-12">
+            <h1 class="modal-title fs-5">First Grading</h1>
+            <br>
+            <div class="row">
+                @foreach($subjectIds as $subjectId)
+                <div class="col-md-4">
+                    <div class="form-group local-forms">
+                        <label>{{ \App\Models\Subject::find($subjectId)->name }}</label>
+                        <input class="form-control" type="text" wire:model="firstGradingGrades.{{ $subjectId }}" placeholder />
                     </div>
                 </div>
-
+                @endforeach
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Save</button>
+
+        <div class="col-12">
+            <h1 class="modal-title fs-5">Second Grading</h1>
+            <br>
+            <div class="row">
+                @foreach($subjectIds as $subjectId)
+                <div class="col-md-4">
+                    <div class="form-group local-forms">
+                        <label>{{ \App\Models\Subject::find($subjectId)->name }}</label>
+                        <input class="form-control" type="text" wire:model="secondGradingGrades.{{ $subjectId }}" placeholder />
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
-    </form>
+
+        <div class="col-12">
+            <h1 class="modal-title fs-5">Third Grading</h1>
+            <br>
+            <div class="row">
+                @foreach($subjectIds as $subjectId)
+                <div class="col-md-4">
+                    <div class="form-group local-forms">
+                        <label>{{ \App\Models\Subject::find($subjectId)->name }}</label>
+                        <input class="form-control" type="text" wire:model="thirdGradingGrades.{{ $subjectId }}" placeholder />
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
+        <div class="col-12">
+            <h1 class="modal-title fs-5">Fourth Grading</h1>
+            <br>
+            <div class="row">
+                @foreach($subjectIds as $subjectId)
+                <div class="col-md-4">
+                    <div class="form-group local-forms">
+                        <label>{{ \App\Models\Subject::find($subjectId)->name }}</label>
+                        <input class="form-control" type="text" wire:model="fourthGradingGrades.{{ $subjectId }}" placeholder />
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
+</div>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+</div>
+</form>
 </div>
