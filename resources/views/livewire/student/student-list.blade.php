@@ -48,6 +48,8 @@
 									<th>Id Number</th>
 									<th>Contact Number</th>
 									<th>Gender</th>
+									<th>Status</th>
+									<th>Subject</th>
 									<th>Action</th>
 
 								</tr>
@@ -68,6 +70,18 @@
 									<td>
 										{{ $student->gender->name ?? ''}}
 									</td>
+									<td>
+										{{ $student->status->name ?? ''}}
+									</td>
+									<td>
+										@if ($student->subjects->isNotEmpty())
+										@foreach ($student->subjects as $subjectKey)
+										{{ $subjectKey->subject->name }}@if (!$loop->last)<br> @endif
+										@endforeach
+										@else
+										No subjects associated
+										@endif
+									</td>
 
 									<td class="text-center">
 										<div class="btn-group" role="group">
@@ -75,11 +89,14 @@
 											@if(auth()->user()->hasRole('admin'))
 											@if ($student->user_id == null)
 											<button type="button" class="btn btn-primary btn-sm mx-1" wire:click="createStudentAccount({{ $student->id }})" title="Add">
-										
+
 												<i class="fa-solid fa-user-plus"></i>
 											</button>
 											@endif
 											@endif
+											<button type="button" class="btn btn-primary btn-sm mx-1" wire:click="grade({{ $student->id }})" title="Grade">
+												<i class='fa fa-pen-to-square'></i>
+											</button>
 											<button type="button" class="btn btn-primary btn-sm mx-1" wire:click="editStudent({{ $student->id }})" title="Edit">
 												<i class='fa fa-pen-to-square'></i>
 											</button>
@@ -106,6 +123,11 @@
 			<div wire.ignore.self class="modal fade" id="studentAccountModal" tabindex="-1" role="dialog" aria-labelledby="studentAccountModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
 				<div class="modal-dialog modal-dialog-centered">
 					<livewire:student.student-account-form />
+				</div>
+			</div>
+			<div wire.ignore.self class="modal fade" id="gradeModal" tabindex="-1" role="dialog" aria-labelledby="gradeModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+				<div class="modal-dialog modal-dialog-centered">
+					<livewire:student.grade-form/>
 				</div>
 			</div>
 			@section('custom_script')

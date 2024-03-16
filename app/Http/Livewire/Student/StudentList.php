@@ -19,6 +19,7 @@ class StudentList extends Component
     protected $listeners = [
         'refreshParentStudent' => '$refresh',
         'refreshParentStudentAccount' => '$refresh',
+        'refreshParentGrade' => '$refresh',
         'deleteStudent',
         'editStudent',
         'deleteConfirmStudent'
@@ -59,6 +60,13 @@ class StudentList extends Component
         $this->emit('openStudentModal');
     }
 
+    public function grade($studentId)
+    {
+        $this->studentId = $studentId;
+        $this->emit('studentId', $this->studentId);
+        $this->emit('openGradeModal');
+    }
+
     public function deleteStudent($studentId)
     {
         Student::destroy($studentId);
@@ -73,9 +81,9 @@ class StudentList extends Component
     public function render()
     {
         if (empty($this->search)) {
-            $students  = Student::paginate($this->perPage);
+            $students  = Student::with('subjects')->paginate($this->perPage);
         } else {
-            $students  = Student::where('first_name', 'LIKE', '%' . $this->search . '%')->paginate($this->perPage);
+            $students  = Student::with('subjects')->where('first_name', 'LIKE', '%' . $this->search . '%')->paginate($this->perPage);
         }
 
         // $borrower = Borrower::with('sex')->get();

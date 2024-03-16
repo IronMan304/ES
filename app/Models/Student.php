@@ -33,4 +33,8 @@ class Student extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function subjects(){
+        return $this->hasMany(StudentSubjectKey::class);
+    }
 }

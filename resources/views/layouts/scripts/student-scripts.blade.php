@@ -21,4 +21,11 @@
     window.livewire.on('openStudentAccountModal', () => {
         $('#studentAccountModal').modal('show');
     });
+    window.livewire.on('closeGradeModal', () => {
+        $('#gradeModal').modal('hide');
+    });
+
+    window.livewire.on('openGradeModal', () => {
+        $('#gradeModal').modal('show');
+    });
 </script>

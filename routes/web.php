@@ -10,6 +10,7 @@ use App\Http\Livewire\Teacher\TeacherList;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Authentication\RoleList;
+use App\Http\Livewire\Enrollment\EnrollmentList;
 use App\Http\Livewire\Authentication\PermissionList;
 
 /*
@@ -49,6 +50,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('subjects', SubjectList::class);
     Route::get('courses', CourseList::class);
     Route::get('levels', LevelList::class);
+    Route::get('enrollments', EnrollmentList::class);
 });
 
 require __DIR__.'/auth.php';
